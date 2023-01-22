@@ -42,11 +42,10 @@ def read_pics(DATA_SET, PIC_NUM, SIGMA):
 
 def show_pic(model, clean_pic, noise_pic):
     model.compile(optimizer="Adam", loss=mean_squared_error, metrics=[psnr_pred, ssim_pred])
-    noise_pic_1 = noise_pic[np.newaxis, :, :, :]  # 升维
+    noise_pic_1 = noise_pic[np.newaxis, :, :, :]
     predict_unsqueeze = model.predict(noise_pic_1, verbose=1)
-    predict1 = predict_unsqueeze.squeeze()  # 降维
+    predict1 = predict_unsqueeze.squeeze()
     predict = np.clip(predict1, 0, 1)
-    # 图片展示
     plt.subplot(1, 3, 1)
     plt.imshow(noise_pic)
     plt.title('Noisy Image')
@@ -63,11 +62,10 @@ def show_pic(model, clean_pic, noise_pic):
 
 def save_pic(model, clean_pic, noise_pic, path):
     model.compile(optimizer="Adam", loss=mean_squared_error, metrics=[psnr_pred, ssim_pred])
-    noise_pic_1 = noise_pic[np.newaxis, :, :, :]  # 升维
+    noise_pic_1 = noise_pic[np.newaxis, :, :, :]
     predict_unsqueeze = model.predict(noise_pic_1, verbose=1)
-    predict1 = predict_unsqueeze.squeeze()  # 降维
+    predict1 = predict_unsqueeze.squeeze()
     predict = np.clip(predict1, 0, 1)
-    # 图片展示
     plt.subplot(1, 3, 1)
     plt.imshow(noise_pic)
     plt.title('Noisy Image')
